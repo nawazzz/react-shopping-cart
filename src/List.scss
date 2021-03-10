@@ -51,13 +51,16 @@ body{
   font-family: 'Raleway', sans-serif;
 }
 .mainContainer{
-  width: 100%;
+  width: 70%;
+  margin: 60px auto;
   display: flex;
+  flex-wrap: wrap;
 }
 .cardContainer{
-  width: 225px;
+  width: 220px;
   position: sticky;
   cursor: pointer;
+  margin: 15px 0 15px 0;
   .freeShipping{
     position: absolute;
     width: 80px;
@@ -77,13 +80,15 @@ body{
     }
   }
   .productDetailContainer{
+    width: 100%;
     .productTitle{
       text-align: center;
-      font-size: 16px;
+      height: 30px;
+      font-size: 18px;
       font-weight: 900;
       letter-spacing: 1px;
       // line-height: 1.5;
-      padding: 15px 15px 20px 15px;
+      padding: 20px 15px 20px 15px;
     }
   }
   .orangeBorder{
