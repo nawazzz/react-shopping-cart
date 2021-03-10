@@ -5,6 +5,18 @@ import List from "./List"
 function App() {
   return (
     <div className="App">
+      <div className="sortMenuContainer">
+        <div className="countProductsFoundContainer">
+          <p className="countProductsFound">17 Product(s) found</p>
+        </div>
+        <div>
+          <label>Order By:  </label>
+          <select>
+            <option>Highest to Lowest</option>
+            <option>Lowest to Highest</option>
+          </select>          
+        </div>
+      </div>
       <div className="heroContainer">
         <div className="sizeContainer">
           <p className="sizes">Sizes:</p>

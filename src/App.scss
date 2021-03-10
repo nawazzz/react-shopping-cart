@@ -47,7 +47,20 @@ table {
 	border-spacing: 0;
 }
 // ......................................................................
-
+.sortMenuContainer{
+	width: 62%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;	
+	.countProductsFoundContainer{
+		margin-left: 60px;
+		.countProductsFound{
+			font-size: 14px;
+			font-weight: 600;			
+		}
+	}
+}
 
 .heroContainer{
 	width: 80%;
@@ -59,6 +72,7 @@ table {
 		.sizes{
 			font-size: 17px;
 			font-weight: 900;
+			padding: 0 0 15px 3px;
 		}
 		.typesOfSize{
 			display: flex;
