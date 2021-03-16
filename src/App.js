@@ -14,19 +14,22 @@ class App extends React.Component {
                       price: 13.25,
                       id: Math.floor(Math.random()*90000) + 10000,
                       image: "https://raw.githubusercontent.com/jeffersonRibeiro/react-shopping-cart/master/src/static/products/6090484789343891_1.jpg",
-                      size: ["S", "M", "L"]
+                      size: ["S", "M", "L"],
+                      quantity: 1
                       },
                       {title: "Tso 3D Black T-Shirt",
                       price: 18.7,
                       id: Math.floor(Math.random()*90000) + 10000,
                       image: "https://raw.githubusercontent.com/jeffersonRibeiro/react-shopping-cart/master/src/static/products/51498472915966370_1.jpg",
-                      size: ["XL", "ML", "XXL"]
+                      size: ["XL", "ML", "XXL"],
+                      quantity: 1
                       },
                       {title: "Dark Thug Maroon T-Shirt",
                       price: 29.45,
                       id: Math.floor(Math.random()*90000) + 10000,
                       image: "https://raw.githubusercontent.com/jeffersonRibeiro/react-shopping-cart/master/src/static/products/39876704341265610_1.jpg",
-                      size: ["ML", "XS"] 
+                      size: ["ML", "XS"],
+                      quantity: 1
                       },
                       {title: "Tso 3D Short Sleeve T-Shirt A",
                       price: 10.9,
@@ -38,13 +41,15 @@ class App extends React.Component {
                       price: 12.5,
                       id: Math.floor(Math.random()*90000) + 10000,
                       image: "https://raw.githubusercontent.com/jeffersonRibeiro/react-shopping-cart/master/src/static/products/100_1.jpg",
-                      size: ["XL", "XXL"]
+                      size: ["XL", "XXL"],
+                      quantity: 1
                       },
                       {title: "Sphynx Tie Dye Wine T-Shirt",
                       price: 9.00,
                       id: Math.floor(Math.random()*90000) + 10000,
                       image: "https://raw.githubusercontent.com/jeffersonRibeiro/react-shopping-cart/master/src/static/products/10686354557628304_1.jpg",
-                      size: ["XL"]
+                      size: ["XL"],
+                      quantity: 1
                       },
                       {title: "Skuul",
                       price: 14.00,
@@ -115,7 +120,16 @@ class App extends React.Component {
       filteredItems: [],
       selectedSize: [],
       itemsInCart: [],
-      isCartOpen: false
+      isCartOpen: false,
+      cartSubtotal: 0
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.itemsInCart.length !== this.state.itemsInCart.length) {
+      this.setState({
+        cartSubtotal: this.state.itemsInCart.reduce((acc, val) => acc + val.price, 0)
+      })
     }
   }
  
@@ -181,7 +195,7 @@ class App extends React.Component {
       }
     })
     this.setState({
-      itemsInCart: this.state.itemsInCart.length? this.state.itemsInCart.concat(addToCart) : (addToCart)
+      itemsInCart: this.state.itemsInCart.length? this.state.itemsInCart.concat(addToCart) : (addToCart),
     })
   }
   deleteItemFromCart = (elm) => {
@@ -195,11 +209,12 @@ class App extends React.Component {
     })
   }
 
+
   render() {  
     return (
       <div className="App">
         <div className="topMostIconContainer" onClick={this.clickCartIconToOpenCart}>
-          <img src={image}/><span className="itemCountInCartIcon">{this.state.itemsInCart.length}</span>
+          <img src="https://raw.githubusercontent.com/jeffersonRibeiro/react-shopping-cart/master/src/static/bag-icon.png"/><span className="itemCountInCartIcon">{this.state.itemsInCart.length}</span>
         </div>
         <div className="sortMenuContainer">
           <div className="countProductsFoundContainer">
@@ -229,9 +244,9 @@ class App extends React.Component {
               <button>ML</button>
             </div>
           </div>
-          <List productDetail={this.state.productDetail} addItemToCart={this.addItemToCart} filteredItems={this.state.filteredItems} selectedSize={this.state.selectedSize} sortPrice={this.sortPrice} addProductElementInCart={this.addProductElementInCart}/>  
+          <List productDetail={this.state.productDetail} addItemToCart={this.addItemToCart} filteredItems={this.state.filteredItems} selectedSize={this.state.selectedSize} sortPrice={this.sortPrice} addProductElementInCart={this.addProductElementInCart} cartSubtotal={this.state.cartSubtotal} cartPriceSubtotal={this.cartPriceSubtotal}/>  
         </div>
-        <Cart productDetail={this.state.productDetail} filteredItems={this.state.filteredItems} selectedSize={this.state.selectedSize} itemsInCart={this.state.itemsInCart} isCartOpen={this.state.isCartOpen} addItemToCart={this.addItemToCart} clickCartIconToOpenCart={this.clickCartIconToOpenCart} addProductElementInCart={this.addProductElementInCart} clickToCloseCart={this.clickToCloseCart} deleteItemFromCart={this.deleteItemFromCart}/>
+        <Cart productDetail={this.state.productDetail} filteredItems={this.state.filteredItems} selectedSize={this.state.selectedSize} itemsInCart={this.state.itemsInCart} isCartOpen={this.state.isCartOpen} addItemToCart={this.addItemToCart} clickCartIconToOpenCart={this.clickCartIconToOpenCart} addProductElementInCart={this.addProductElementInCart} clickToCloseCart={this.clickToCloseCart} deleteItemFromCart={this.deleteItemFromCart} cartSubtotal={this.state.cartSubtotal} cartPriceSubtotal={this.cartPriceSubtotal}/>
       </div>
     );
   }

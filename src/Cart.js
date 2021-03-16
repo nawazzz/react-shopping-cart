@@ -20,7 +20,7 @@ class Cart extends React.Component {
                 className="topMostIconContainer" 
                 // onClick={this.props.handleCartSelection}
                 >
-                  <img src={image} />
+                  <img src="https://raw.githubusercontent.com/jeffersonRibeiro/react-shopping-cart/master/src/static/bag-icon.png" />
                   <p className="itemCountInCartIcon">{this.props.itemsInCart.length}</p>
                 </div>
               </div>
@@ -74,13 +74,13 @@ class Cart extends React.Component {
                     <div className="subtotalContainerInCart">
                       <h6 className="subtotalHeading">SUBTOTAL
                       
-                      </h6>
-                      <p className="dollarSign">$</p>
+                      </h6>                    
+                      <p className="dollarSign">$ {this.props.cartSubtotal}</p>
                     </div>
                     <div className="checkoutHeadingContainer">
                       <h3>CHECKOUT</h3>
                     </div>
-                  </div>           
+                  </div>          
                 </div>
               </div>
             </div>
