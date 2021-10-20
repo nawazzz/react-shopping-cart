@@ -5,7 +5,7 @@ import List from "./List"
 import Cart from "./Cart"
 import image from "./cart-image.jpg"
 
-
+// using class method of react to create the shopping cart app
 class App extends React.Component {
   constructor(props) {
     super(props)
